@@ -1,6 +1,6 @@
-# refactoring-website
+# Software Reconstruction Tool - Website
+> Tools for software reconstruction (namely refactoring) during the design phase.
 
-> Tools for refactoring at the design phase.
 
 ## Build Setup
 
