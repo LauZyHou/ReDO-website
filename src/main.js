@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import el from 'element-ui'
+Vue.use(el)
+
 
 Vue.config.productionTip = true
 
