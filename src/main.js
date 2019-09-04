@@ -3,7 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import el from 'element-ui'
+import el from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css';
+import './index.css';
 Vue.use(el)
 
 

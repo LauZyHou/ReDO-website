@@ -1,5 +1,5 @@
 <template>
-  <div id="matrixRelationChart" style="width: 100%;height: 100%;border: 3px solid #000000;"></div>
+  <div id="matrixRelationChart" style="width: 1250%;height: 400%;border: 1px solid #eee;"></div>
 
 </template>
 
@@ -14,21 +14,37 @@ export default {
       label: ['a', 'b', 'c']
     }
   },
+  props:{
+    name: {type:String},
+    matrix: {
+      type: Array,
+      required: true
+    },
+    label:{
+      type:Array,
+      required: true,
+      validator: function (t) {
+        return true
+      //  return t.size()==this.matrix.size()
+      },
+    }
+  },
   mounted () {
     // test code start
-    this.matrix = []
-    for (let i = 0; i < 100; i++) {
-      let tmp = []
-      for (let j = 0; j < 100; j++) {
-        tmp[j] = Math.random().toPrecision(2)
-      }
-      this.matrix[i] = tmp
-    }
-    this.label = []
-    for (let i = 0; i < 100; i++) {
-      this.label[i] = 'node' + i
-    }
+    // this.matrix = []
+    // for (let i = 0; i < 100; i++) {
+    //   let tmp = []
+    //   for (let j = 0; j < 100; j++) {
+    //     tmp[j] = Math.random().toPrecision(2)
+    //   }
+    //   this.matrix[i] = tmp
+    // }
+    // this.label = []
+    // for (let i = 0; i < 100; i++) {
+    //   this.label[i] = 'node' + i
+    // }
     // test code end
+
     this.showRelation()
   },
   methods: {

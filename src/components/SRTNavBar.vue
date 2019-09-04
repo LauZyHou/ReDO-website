@@ -1,92 +1,70 @@
 <template>
-  <div style="height:125%" >
+  <div style="height:90%" >
+    <el-menu default-active="/home" class="el-nav-bar" @open="handleOpen" @close="handleClose" :collapse="isCollapse"
+             v-bind:background-color=bgcolor :unique-opened=true :router=true>
 
-    <el-menu default-active="1" class="nav-bar" @open="handleOpen" @close="handleClose" :collapse="isCollapse"
-    v-bind:background-color=bgcolor unique-opened="true" router="true">
-      <el-menu-item style="padding-left:0px" index="1">
+      <el-menu-item index="/home">
         <!--now index is the path from router-->
         <img :src=homePageLogo class="el-icon-menu"></img>
-        <span slot="title" class="nav-bar-choice">Home Page</span>
+        <span slot="title" class="el-title">Home Page</span>
       </el-menu-item>
-      <el-menu-item style="padding-left:0px" index="2" disabled>
-        <img :src=homePageLogo class="el-icon-menu" ></img>
-        <span slot="title" class="nav-bar-choice">Introduction</span>
+      <el-menu-item  index="2" disabled>
+        <img :src=introLogo class="el-icon-menu" ></img>
+        <span slot="title" class="el-title">Introduction</span>
       </el-menu-item>
-      <el-menu-item style="padding-left:0px" index="3">
-        <img :src=homePageLogo class="el-icon-menu" ></img>
-        <span slot="title" class="nav-bar-choice">Refactoring</span>
+      <el-menu-item index="/reconstruct/import">
+        <img :src=refactoringLogo class="el-icon-menu" ></img>
+        <span slot="title" class="el-title">Refactoring</span>
       </el-menu-item>
-      <el-menu-item style="padding-left:0px" index="4">
-        <img :src=homePageLogo class="el-icon-menu" ></img>
-        <span slot="title" class="nav-bar-choice" disabled>Help</span>
+      <el-menu-item  index="4" disabled>
+        <img :src=helpLogo class="el-icon-menu" ></img>
+        <span slot="title" class="el-title"  disabled>Help</span>
       </el-menu-item>
     </el-menu>
 
-    <router-link/>
+    <router-view/>
   </div>
 </template>
 
 <style scoped>
-  *{
-    list-style-type:none;
-    padding-left:0px;
-  }
-  .nav-bar:not(.el-menu--collapse) {
-    /*width: 200px;*/
-   /*height: 100%;*/
-    margin-top:0px;
-  }
 
-  .nav-bar.el-menu--collapse {
-    width: 0px;
-    background-color: aquamarine;
-    /*height: 100%;*/
-  }
-  .nav-bar{
-    /*border-right: 1px solid grey;*/
-    margin-right: 0px;
-    margin-left: 0px;
-    padding-left:0px;
-    width:20%;
-    height:100%;
-  }
-.el-menu-item{
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 0px;
-  height:20px;
 
-}
+   .el-nav-bar:not(.el-menu--collapse) {
+     width: 20%;
+     min-height: 400px;
 
-  .nav-bar-choice {
-    margin-right: 0px;
-    margin-left: 0px;
-    height:20px;
-    width: 100px;
-    font-size: 17px;
-margin-top: 1.5px;
-display:inline-block;
-    vertical-align: top;
-
-    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-    text-align: center;
-
-  }
-  .el-menu-item img{
+   }
+   .el-nav-bar{
+     float:left;
+     height:125%;
+   }
+  .el-icon-menu{
     height:20px;
     width:20px;
-    margin-right:0px;
+
   }
+
+.el-title{
+  display:inline-block;
+  width:50%;
+}
+
 </style>
 
 <script>
-  import hplogo from '../assets/logo.png'
+  import hplogo from '../assets/home.png'
+  import intrologo from '../assets/introduction.png'
+  import refactoringlogo from '../assets/refactoring.png'
+  import helplogo from '../assets/help.png'
   export default {
     data() {
       return {
         isCollapse: false,
-        bgcolor: "#d7d7d7",
-        homePageLogo: hplogo
+        bgcolor: "#c4e1f2",
+        homePageLogo: hplogo,
+        introLogo: intrologo,
+        refactoringLogo:refactoringlogo,
+        helpLogo:helplogo
       };
     },
     props:{
