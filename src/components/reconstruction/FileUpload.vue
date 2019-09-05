@@ -8,6 +8,7 @@
     :on-remove="handleRemove"
     :before-remove="beforeRemove"
     :before-upload="beforeUpload"
+    :on-exceed="handleExceed"
     :limit="1"
     :auto-upload="false"
     ref="upload"
@@ -40,12 +41,19 @@
       beforeRemove(file, fileList) {
         //return this.$confirm(`Cancel the transfert of ${ file.name } ?`);
       },
+      handleExceed(files, fileList){
+        this.$message({message:'Please delete the original file.',duration:1000})
+      },
       submitUpload() {
+        let upload=this.$refs.upload;
+
         this.$refs.upload.submit();
         this.$router.push('/reconstruct/original-structure')
       },
       beforeUpload(file){
+
         let name=file.name
+
         if(name.toString().endsWith('.xml')){return true;}
         else{
           this.$alert("Not supported File"); return false;

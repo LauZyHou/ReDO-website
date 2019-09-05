@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div style="width:100%">
-      <div style="display:inline-block" >
+      <div style="display:inline-block; margin-bottom:15px" >
          <el-button > Back to parent </el-button>
         <el-button > Back to top </el-button>
 

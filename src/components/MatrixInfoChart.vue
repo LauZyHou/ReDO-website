@@ -1,5 +1,5 @@
 <template>
-  <div id="matrixRelationChart" style="width: 1250%;height: 400%;border: 1px solid #eee;"></div>
+  <div id="matrixRelationChart" class="maine"></div>
 
 </template>
 
@@ -89,7 +89,11 @@ export default {
       return a
     },
     showRelation: function () {
-      let chart1 = charts.init(document.getElementById('matrixRelationChart'))
+      var myChart=document.getElementById('matrixRelationChart');
+      myChart.style.width=window.innerWidth*0.69+'px';
+      myChart.style.height=window.innerHeight*0.6+'px';
+
+      let chart1 = charts.init(myChart)
 
       let option = {
         backgroundColor: '#ffffff',
@@ -99,7 +103,8 @@ export default {
           top: '3%',
           textStyle: {
             color: '#000',
-            fontSize: '20'
+            fontSize: '20',
+            fontWeight:100
           }
         },
         tooltip: { // Tag shown when touch on lines/edges
@@ -172,3 +177,14 @@ export default {
 }
 
 </script>
+<style scoped>
+  .maine{
+    margin-left:0;
+margin-right:0;
+    width: auto;
+    /*margin-right:0;*/
+    height: 350%;
+    border: 1px solid #eee;
+  }
+
+  </style>
