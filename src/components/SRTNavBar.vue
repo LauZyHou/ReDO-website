@@ -1,7 +1,7 @@
 <template>
-  <div style="height:90%" >
+  <div style="height:100%" >
     <el-menu default-active="/home" class="el-nav-bar" @open="handleOpen" @close="handleClose" :collapse="isCollapse"
-             v-bind:background-color=bgcolor :unique-opened=true :router=true>
+             v-bind:background-color=bgcolor :unique-opened=true :router=true style="height:90%">
 
       <el-menu-item index="/home">
         <!--now index is the path from router-->
@@ -22,7 +22,7 @@
       </el-menu-item>
     </el-menu>
 
-    <router-view/>
+    <router-view style="height:90%;overflow:hidden" id="workspace"/>
   </div>
 </template>
 

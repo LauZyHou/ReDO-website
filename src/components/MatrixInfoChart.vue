@@ -9,23 +9,36 @@ import charts from 'echarts'
 export default {
   data () {
     return {
-      rootName: 'ca',
-      matrix: [[3, 4, 5], [6, 7, 8], [9, 10, 11]],
-      label: ['a', 'b', 'c']
+      updateview:null
+      // rootName: 'ca',
+      // matrix: [[3, 4, 5], [6, 7, 8], [9, 10, 11]],
+      // label: ['a', 'b', 'c']
     }
   },
   props:{
-    name: {type:String},
+    rname: {type:String,required: true,
+// default:(p)=> {if(p==Null) return 'ca'; else return p;}
+},
     matrix: {
       type: Array,
-      required: true
+      required: true,
+      default: ()=>[[3, 4, 5], [6, 7, 8], [9, 10, 11]]
     },
     label:{
       type:Array,
       required: true,
+      default: ()=> ['a', 'b', 'c'],
       validator: function (t) {
         return true
       //  return t.size()==this.matrix.size()
+      },
+    },
+    labelid:{
+      type:Array,
+      default: ()=> ['a', 'b', 'c'],
+      validator: function (t) {
+        return true
+        //  return t.size()==this.matrix.size()
       },
     }
   },
@@ -47,6 +60,12 @@ export default {
 
     this.showRelation()
   },
+  watch:{
+    rname(){
+        this.showRelation();
+
+    }
+  },
   methods: {
     transformLabel: function () {
       let a = []
@@ -54,6 +73,7 @@ export default {
         a.push({
           name: this.label[l],
           complexity: this.matrix[l][l],
+          nameid: this.labelid[l],
           draggable: true,
           symbolSize: 20,
           label: {
@@ -66,6 +86,7 @@ export default {
       }
       return a
     },
+
     transformMatrix: function () {
       let _this = this
       let a = []
@@ -92,13 +113,13 @@ export default {
       var myChart=document.getElementById('matrixRelationChart');
       myChart.style.width=window.innerWidth*0.69+'px';
       myChart.style.height=window.innerHeight*0.6+'px';
-
+      var _this=this;
       let chart1 = charts.init(myChart)
 
       let option = {
         backgroundColor: '#ffffff',
         title: {
-          text: this.rootName,
+          text: _this.rname,
           left: '3%',
           top: '3%',
           textStyle: {
@@ -127,8 +148,7 @@ export default {
           },
           layout: 'force', // 'none' 'circular''force'
           // Tagged-shape
-          // symbol: "path://M19.300,3.300 L253.300,3.300 C262.136,3.300 269.300,10.463 269.300,19.300 L269.300,21.300 C269.300,30.137 262.136,37.300 253.300,37.300 L19.300,37.300 C10.463,37.300 3.300,30.137 3.300,21.300 L3.300,19.300 C3.300,10.463 10.463,3.300 19.300,3.300 Z",
-          // 'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'
+           // 'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'
           symbol: 'circle',
 
           lineStyle: { // edge-line format setting
@@ -165,11 +185,11 @@ export default {
           // animationDurationUpdate: 1000
         }]
       }
-      chart1.setOption(option)
+      chart1.setOption(option,true)
       chart1.on('click', eConsole)
       function eConsole (param) {
         if (param.dataType === 'node') {
-          window.open('http://localhost:8081/')
+          _this.$emit('detail',param.data)
         }
       }
     }

@@ -2,14 +2,14 @@
   <div class="main">
     <div style="width:100%">
       <div style="display:inline-block; margin-bottom:15px" >
-         <el-button > Back to parent </el-button>
-        <el-button > Back to top </el-button>
+         <el-button @click="backToParent"> Back to parent </el-button>
+        <el-button @click="backToTop"> Back to top </el-button>
 
       </div>
     </div>
     <el-tabs type="card" >
       <el-tab-pane label="Structure" >
-        <matrix-info-chart :matrix="refactorMatrix" :label="refactorMatrixLabel" />
+        <matrix-info-chart :matrix="showMatrix" :label="changeToLabel(showMatrixLabel)" :rname="changeToLabelOne(showNode)" :labelid="showMatrixLabel" @detail="seeNodeDetail"/>
       </el-tab-pane>
       <el-tab-pane label="Complexity">
         <el-table
@@ -41,48 +41,119 @@
   export default {
     data: function () {
       return {
-        refactorMatrix: [[3, 4, 5], [6, 7, 8], [9, 10, 11]],
-        refactorMatrixLabel: ['aa', 'b', 'c'],
+        nodeList: {},
+        nodeLabel: ['ccc1', 'a', 'b','c'],
+        showMatrix:[[3, 4, 5], [6, 7, 8], [9, 10, 11]],
+        showMatrixLabel:['ccc1', '1', '2'], // Just id
+        showNode: "cccc1",
+        nodeHistory:[],
         tableData: [{
           origin: 100,
           refactored: 90,
           decrease: -0.1
-        }]
+        }],
+
       }
     },
-    mounted(){
-      this.$emit('step',2);
+    beforeMount(){
 
+      this.$emit('step',2);
+      var _this=this
+      document.addEventListener('keydown', function(e) {
+        if (e.keyCode === 116) {
+          _this.$router.push({
+            path: "/reconstruct/import",
+          })
+        }
+      })
+      if (this.$route.params.data!=undefined){
+        this.nodeLabel=this.$route.params.label
+        this.nodeList=this.$route.params.data
+        this.showMatrix=this.$route.params.data[0].matrix
+        this.tableData[0].origin=this.$route.params.originalComplexity
+        var fd = new FormData();
+        fd.append("matrix",this.$route.params.data[0].matrix)
+        this.$http.post(this.baseUrl+'calculate-complexity', fd,
+          {headers:{'Content-Type':'application/x-www-form-urlencoded', 'dataType': 'json'}})
+          .then((res)=>{
+            console.log(res)
+            _this.tableData[0].refactored= res.data.complexity
+            _this.tableData[0].decrease= ( _this.tableData[0].refactored - _this.tableData[0].origin)/_this.tableData[0].origin * 100+"%"
+
+          })
+        // this.nodeHistory.push(this.nodeList[0].name)
+        this.showMatrixLabel=this.$route.params.data[0].tag
+        this.showNode=this.$route.params.data[0].name
+      }
     },
+
     components:{MatrixInfoChart},
     methods: {
-      handleTabsEdit(targetName, action) {
-        if (action === 'add') {
-          let newTabName = ++this.tabIndex + '';
-          this.editableTabs.push({
-            title: 'New Tab',
-            name: newTabName,
-            content: 'New Tab content'
-          });
-          this.editableTabsValue = newTabName;
-        }
-        if (action === 'remove') {
-          let tabs = this.editableTabs;
-          let activeName = this.editableTabsValue;
-          if (activeName === targetName) {
-            tabs.forEach((tab, index) => {
-              if (tab.name === targetName) {
-                let nextTab = tabs[index + 1] || tabs[index - 1];
-                if (nextTab) {
-                  activeName = nextTab.name;
-                }
-              }
-            });
-          }
+      // change "1" to "name"
+      changeToLabel(t){
 
-          this.editableTabsValue = activeName;
-          this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+        var _this=this;
+       var ret=[]
+       var r=/^\+?[0-9][0-9]*$/;
+       var e;
+       for(e of t){
+         if(r.test(e)){
+           ret.push(_this.nodeLabel[parseInt(e)])
+         }
+         else{ret.push(e)}
+       }
+       return ret
+     },
+      changeToLabelOne(e){
+        var _this=this;
+        var r=/^\+?[0-9][0-9]*$/;
+        if(r.test(e)){
+          return _this.nodeLabel[parseInt(e)];
         }
+        else{ return e}
+      },
+      seeNodeDetail(node){
+        var _this=this
+
+        if(node.nameid===_this.showNode){
+          return
+        }
+
+        var e;
+        for(e of _this.nodeList){
+          if((e.name)===node.nameid){
+            _this.nodeHistory.push(_this.showNode)
+            _this.showMatrix=e.matrix
+            _this.showMatrixLabel=e.tag
+
+            _this.showNode=e.name
+          }
+        }
+        console.log(node.name)
+
+      },
+      backToTop(){
+        var _this=this
+        _this.nodeHistory=[]
+        // _this.nodeHistory.push(_this.nodeList[0].name)
+        _this.showMatrix=_this.nodeList[0].matrix
+        _this.showMatrixLabel=_this.nodeList[0].tag
+        _this.showNode=_this.nodeList[0].name
+      },
+      backToParent(){
+
+        var _this=this
+        if(_this.nodeHistory.length===0) return;
+        var nodeId=_this.nodeHistory.pop();
+        var e
+        for(e of _this.nodeList){
+          if((e.name)===nodeId){
+            _this.showMatrix=e.matrix
+            _this.showMatrixLabel=e.tag
+            _this.showNode=e.name
+          }
+        }
+
       }
     }
   }

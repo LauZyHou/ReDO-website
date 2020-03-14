@@ -24,13 +24,13 @@ export default new Router({
 
       },
         {
-
+          name:'original',
           path:'/reconstruct/original-structure',
           component: OriginalStructureItem
 
         },
         {
-
+          name:'refactor',
           path:'/reconstruct/refactor',
           component: RefactorItem
 

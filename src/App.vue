@@ -7,11 +7,13 @@
       <div class="title-style"><p><b>Automated Refactoring Tool</b></p></div>
     </div>
 
-    <div style="height:80%">
+    <div style="height:100%">
+
+      <el-button @click="logout">Logout</el-button>
       <s-r-t-nav-bar/>
     </div>
 
-    <login-dialog/>
+    <login-dialog :session-control="sessionControl" @login="login"/>
   </div>
 </template>
 
@@ -25,7 +27,54 @@
     data() {
       return {
         logo: logo,
+        sessionControl: "not-exist"
+      }
+    },
+    created(){
+      var _this=this
+      this.$http.post(this.baseUrl+'session', null,
+        {headers:{'Content-Type':'application/x-www-form-urlencoded', 'dataType': 'json'}})
+        .then((res)=>{
+          console.log(res)
+            _this.sessionControl=res.data.username
+        })
+    },
+    methods:{
+      logout(){
+        var _this=this
+        this.$http.post(this.baseUrl+'sessionOut', null,
+          {headers:{'Content-Type':'application/x-www-form-urlencoded', 'dataType': 'json'}})
+          .then((res)=>{
+            console.log(res)
+            _this.sessionControl="not-exist"
 
+          })
+      },
+      login(e){
+        var a=e.split(' ')
+        var fd=new FormData();
+        fd.append("username",a[0])
+        fd.append("password",a[1])
+var _this=this
+        this.$http.post(this.baseUrl+'login', fd,
+          {headers:{'Content-Type':'application/x-www-form-urlencoded', 'dataType': 'json'}})
+          .then((res)=>{
+            console.log(res)
+            if(res.data.success=='true'){
+
+              _this.sessionControl=a[0]
+              // _this.$message('Hi, '+_this.form.username+'!');
+
+            }
+            else{
+              _this.$alert('Password is wrong!', '', {
+                confirmButtonText: 'Try Again',
+              });
+              _this.dialogFormVisible = true
+            }
+
+
+          })
       }
     },
     components: {MatrixInfoChart, SRTNavBar, LoginDialog}
