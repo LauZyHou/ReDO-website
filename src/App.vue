@@ -9,8 +9,8 @@
 
     <div style="height:100%">
 
-      <el-button @click="logout">Logout</el-button>
-      <s-r-t-nav-bar/>
+
+      <s-r-t-nav-bar @logout="logout"/>
     </div>
 
     <login-dialog :session-control="sessionControl" @login="login"/>

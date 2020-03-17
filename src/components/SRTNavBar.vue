@@ -20,6 +20,10 @@
         <img :src=helpLogo class="el-icon-menu" ></img>
         <span slot="title" class="el-title"  disabled>Help</span>
       </el-menu-item>
+      <el-menu-item  >
+        <img :src=helpLogo class="el-icon-menu" ></img>
+        <span slot="title" class="el-title" @click="logout">Logout</span>
+      </el-menu-item>
     </el-menu>
 
     <router-view style="height:90%;overflow:hidden" id="workspace"/>
@@ -78,6 +82,9 @@
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
+      },
+      logout(){
+        this.$emit("logout","click")
       }
     }
   }

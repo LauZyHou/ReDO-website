@@ -139,12 +139,12 @@ export default {
 
         series: [{
           type: 'graph', // Graph type
-          top: '10%', // distance between graph and top of div
+          top: '1%', // distance between graph and top of div
           roam: true, // 'scale','move',false,true
           focusNodeAdjacency: true,
           force: {
-            repulsion: 400, // force between nodes
-            edgeLength: [10, 15] // length of edge (range)
+            repulsion: 500, // force between nodes
+            edgeLength: [20, 25] // length of edge (range)
           },
           layout: 'force', // 'none' 'circular''force'
           // Tagged-shape
@@ -174,7 +174,7 @@ export default {
             normal: {
               show: true,
               textStyle: {
-                fontSize: 14
+                fontSize: 10
               }
             }
           },
