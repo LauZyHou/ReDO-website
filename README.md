@@ -1,5 +1,5 @@
-# Software Reconstruction Tool - Website
-> Tools for software reconstruction (namely refactoring) during the design phase.
+# RoDS - Website
+> Tools for generating developing sequence during the design phase.
 
 
 ## Build Setup
