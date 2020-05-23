@@ -2,8 +2,8 @@
   <div class="main">
     <div style="width:100%">
       <div style="display:inline-block; margin-bottom:15px" >
-         <el-button @click="backToParent"> Back to parent </el-button>
-        <el-button @click="backToTop"> Back to top </el-button>
+         <el-button @click="backToParent"> Back to parent</el-button>
+        <el-button @click="backToTop"> Back to top</el-button>
 
       </div>
     </div>
@@ -11,24 +11,24 @@
       <el-tab-pane label="Structure" >
         <matrix-info-chart :matrix="showMatrix" :label="changeToLabel(showMatrixLabel)" :rname="changeToLabelOne(showNode)" :labelid="showMatrixLabel" @detail="seeNodeDetail"/>
       </el-tab-pane>
-      <el-tab-pane label="Complexity">
+      <el-tab-pane label="Statistic">
         <el-table
           :data="tableData"
           border
           style="width: 100%">
           <el-table-column
             prop="origin"
-            label="Origin"
+            label="Original Cost"
             width="180">
           </el-table-column>
           <el-table-column
             prop="refactored"
-            label="New"
+            label="Optimized Cost"
             width="180">
           </el-table-column>
           <el-table-column
             prop="decrease"
-            label="Change">
+            label="Decreasing Rate">
           </el-table-column>
         </el-table>
       </el-tab-pane>

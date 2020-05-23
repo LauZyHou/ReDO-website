@@ -2,10 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import HomePage from '@/components/HomePage'
-import ReconstructNavBar from "../components/reconstruction/ReconstructNavBar";
+import ReconstructNavBar from "../components/reconstruction/OptNavBar";
 import FileUpload from "../components/reconstruction/FileUpload";
 import OriginalStructureItem from "../components/reconstruction/OriginalStructureItem";
-import RefactorItem from "../components/reconstruction/RefactorItem";
+import RefactorItem from "../components/reconstruction/PhaseItem";
 Vue.use(Router)
 
 export default new Router({

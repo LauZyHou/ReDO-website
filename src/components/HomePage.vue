@@ -1,13 +1,13 @@
 <template>
   <div style="float:left" >
     <p >
-      Welcome to use Automated Refactoring Tool !
+      Welcome.
     <br/> <br/>
-      The tool can automatically reconstruct the structure of a given software.
+      Tool can generate developing sequence during the design phase.
       <br/> <br/>
-      You can send a email to us with your comments, questions or suggestions.
+      You can send e-mail for us to express your idea.
       <br/> <br/>
-      Email: <a href="mailto:10165101169@stu.ecnu.edu.cn?subject=SRT%20Contact">Click Here</a>
+      Email: <a href="mailto:10165101169@stu.ecnu.edu.cn?subject=SRT%20Contact">Click here.</a>
     </p>
   </div>
 </template>

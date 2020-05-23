@@ -6,20 +6,20 @@
       <el-menu-item index="/home">
         <!--now index is the path from router-->
         <img :src=homePageLogo class="el-icon-menu"></img>
-        <span slot="title" class="el-title">Home Page</span>
+        <span slot="title" class="el-title">Homepage</span>
       </el-menu-item>
-      <el-menu-item  index="2" disabled>
-        <img :src=introLogo class="el-icon-menu" ></img>
-        <span slot="title" class="el-title">Introduction</span>
-      </el-menu-item>
+      <!--<el-menu-item  index="2" disabled>-->
+        <!--<img :src=introLogo class="el-icon-menu" ></img>-->
+        <!--<span slot="title" class="el-title">介绍</span>-->
+      <!--</el-menu-item>-->
       <el-menu-item index="/reconstruct/import">
         <img :src=refactoringLogo class="el-icon-menu" ></img>
-        <span slot="title" class="el-title">Refactoring</span>
+        <span slot="title" class="el-title">Development Order Optimization</span>
       </el-menu-item>
-      <el-menu-item  index="4" disabled>
-        <img :src=helpLogo class="el-icon-menu" ></img>
-        <span slot="title" class="el-title"  disabled>Help</span>
-      </el-menu-item>
+      <!--<el-menu-item  index="4" disabled>-->
+        <!--<img :src=helpLogo class="el-icon-menu" ></img>-->
+        <!--<span slot="title" class="el-title"  disabled>Help</span>-->
+      <!--</el-menu-item>-->
       <el-menu-item  >
         <img :src=helpLogo class="el-icon-menu" ></img>
         <span slot="title" class="el-title" @click="logout">Logout</span>

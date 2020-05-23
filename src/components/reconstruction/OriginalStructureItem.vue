@@ -1,9 +1,9 @@
 <template>
   <div class="main" style="height:80%;width:92.5%">
     <div style="width:100%">
-      <p style="display:inline-block;margin-right:5%;">Original Complexity: {{complexity}}</p>
+      <p style="display:inline-block;margin-right:5%;">Original Cost matrix: {{complexity}}</p>
       <div style="display:inline-block" >
-        <el-button @click="doClick">Do Refactor </el-button>
+        <el-button @click="doClick">Optimize It</el-button>
       </div>
     </div>
     <el-tabs type="card">

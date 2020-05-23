@@ -2,9 +2,9 @@
   <div id="app">
     <div class="intro">
       <div class="img-container">
-        <img :src=logo height="1000%"/>
+        <!--<img :src=logo height="1000%"/>-->
       </div>
-      <div class="title-style"><p><b>Automated Refactoring Tool</b></p></div>
+      <div class="title-style"><p><b>ReDO: Recommendation on Development Order based on Design Class Diagram</b></p></div>
     </div>
 
     <div style="height:100%">

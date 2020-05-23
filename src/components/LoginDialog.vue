@@ -3,7 +3,7 @@
 
   <el-dialog title="Login" :visible.sync="dialogFormVisible" :show-close=false :destroy-on-close=false :close-on-click-modal="false">
     <el-form :model="form">
-      <el-form-item label="User" :label-width="formLabelWidth">
+      <el-form-item label="Username" :label-width="formLabelWidth">
         <el-input v-model="form.username" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item label="Password" :label-width="formLabelWidth">

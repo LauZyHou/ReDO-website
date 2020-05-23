@@ -1,7 +1,7 @@
 <template>
   <div>
   <el-steps :active="currentStep" finish-status="success" simple >
-    <el-step title="Import" ></el-step>
+    <el-step title="Input" ></el-step>
     <el-step title="Structure Checkout"></el-step>
   </el-steps>
 
@@ -15,7 +15,7 @@
     export default {
     data(){
       return{
-        name: "ReconstructNavBar.vue",
+        name: "OptNavBar.vue",
         currentStep:0
       }
     },
