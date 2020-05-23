@@ -1,5 +1,5 @@
-# RoDS - Website
-> Tools for generating developing sequence during the design phase.
+# ReDO - Website
+> Tools for generating developing order during the design phase.
 
 
 ## Build Setup
