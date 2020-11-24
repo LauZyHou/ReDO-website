@@ -12,7 +12,7 @@ import { Message } from 'element-ui'
 Vue.use(Message)
 Vue.prototype.$message = Message
 Vue.use(el)
-axios.defaults.withCredentials=true;
+axios.defaults.withCredentials = true;
 Vue.prototype.$http = axios
 Vue.prototype.baseUrl = 'http://localhost:8091/'
 
@@ -24,4 +24,5 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
-})
+});
+

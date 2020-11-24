@@ -21,7 +21,7 @@
         <!--<span slot="title" class="el-title"  disabled>Help</span>-->
       <!--</el-menu-item>-->
       <el-menu-item  >
-        <img :src=helpLogo class="el-icon-menu" ></img>
+        <img :src=helpLogo class="el-icon-menu" />
         <span slot="title" class="el-title" @click="logout">Logout</span>
       </el-menu-item>
     </el-menu>
@@ -31,61 +31,56 @@
 </template>
 
 <style scoped>
-
-
-   .el-nav-bar:not(.el-menu--collapse) {
-     width: 20%;
-     min-height: 400px;
-
-   }
-   .el-nav-bar{
-     float:left;
-     height:125%;
-   }
-  .el-icon-menu{
-    height:20px;
-    width:20px;
-
-  }
-
-.el-title{
-  display:inline-block;
-  width:50%;
+.el-nav-bar:not(.el-menu--collapse) {
+  width: 20%;
+  min-height: 400px;
+}
+.el-nav-bar {
+  float: left;
+  height: 125%;
+}
+.el-icon-menu {
+  height: 20px;
+  width: 20px;
 }
 
+.el-title {
+  display: inline-block;
+  width: 50%;
+}
 </style>
 
 <script>
-  import hplogo from '../assets/home.png'
-  import intrologo from '../assets/introduction.png'
-  import refactoringlogo from '../assets/refactoring.png'
-  import helplogo from '../assets/help.png'
-  export default {
-    data() {
-      return {
-        isCollapse: false,
-        bgcolor: "#c4e1f2",
-        homePageLogo: hplogo,
-        introLogo: intrologo,
-        refactoringLogo:refactoringlogo,
-        helpLogo:helplogo
-      };
+import hplogo from "../assets/home.png";
+import intrologo from "../assets/introduction.png";
+import refactoringlogo from "../assets/refactoring.png";
+import helplogo from "../assets/help.png";
+export default {
+  data() {
+    return {
+      isCollapse: false,
+      bgcolor: "#c4e1f2",
+      homePageLogo: hplogo,
+      introLogo: intrologo,
+      refactoringLogo: refactoringlogo,
+      helpLogo: helplogo,
+    };
+  },
+  props: {
+    navWidth: {
+      type: Number,
     },
-    props:{
-      navWidth: {
-        type:Number
-  }
+  },
+  methods: {
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
     },
-    methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      logout(){
-        this.$emit("logout","click")
-      }
-    }
-  }
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    logout() {
+      this.$emit("logout", "click");
+    },
+  },
+};
 </script>
